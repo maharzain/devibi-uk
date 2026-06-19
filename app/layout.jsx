@@ -8,6 +8,8 @@ import Script from "next/script";
 import { SITE, SERVICES } from "@/lib/services";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
+const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+const tagId = gaId || adsId;
 
 export const metadata = {
   metadataBase: new URL(SITE.url),
@@ -83,10 +85,10 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        {gaId ? (
+        {tagId ? (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${tagId}`}
               strategy="afterInteractive"
             />
             <Script id="devibi-ga" strategy="afterInteractive">
@@ -95,7 +97,8 @@ export default function RootLayout({ children }) {
                 function gtag(){dataLayer.push(arguments);}
                 window.gtag = gtag;
                 gtag('js', new Date());
-                gtag('config', '${gaId}', { send_page_view: false });
+                ${gaId ? `gtag('config', '${gaId}', { send_page_view: false });` : ""}
+                ${adsId ? `gtag('config', '${adsId}');` : ""}
               `}
             </Script>
           </>

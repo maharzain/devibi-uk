@@ -10,7 +10,7 @@
    ============================================================ */
 
 import { useEffect, useState } from "react";
-import { trackEvent } from "@/lib/tracking";
+import { trackEvent, trackAdsConversion, conversionId } from "@/lib/tracking";
 
 const PROJECT_TYPES = [
   "New website",
@@ -92,6 +92,7 @@ export default function UKLeadForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (submitting || sent) return; // idempotent — never fire a duplicate conversion
     const form = e.currentTarget;
     const name = form.elements.name;
     const email = form.elements.email;
@@ -165,9 +166,12 @@ export default function UKLeadForm() {
         timeline: timeline || "Not selected",
         page_path: pagePath,
       });
-      /* Google Ads conversion hook — fires the named event if a
-         conversion label is wired up in GTM / gtag for this page. */
+      /* Google Ads conversion — fires only when NEXT_PUBLIC_GOOGLE_ADS_ID
+         and NEXT_PUBLIC_GADS_LEAD_LABEL are configured (see env). */
       trackEvent("generate_lead", { form: SOURCE, page_path: pagePath });
+      trackAdsConversion(process.env.NEXT_PUBLIC_GADS_LEAD_LABEL, {
+        transaction_id: conversionId(),
+      });
     } catch (error) {
       window.location.href = fallbackMailto(payload);
       setNotice("We couldn't send it automatically, so your email app is opening with the details prefilled.");

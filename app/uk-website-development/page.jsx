@@ -1,5 +1,6 @@
 import Link from "next/link";
 import UKLeadForm from "@/components/UKLeadForm";
+import ConsultButton from "@/components/ConsultButton";
 import { SITE, TESTIMONIALS } from "@/lib/services";
 import { PREVIOUS_WORK } from "@/lib/previous-work";
 
@@ -14,7 +15,7 @@ const PATH = "/uk-website-development";
 export const metadata = {
   title: "Website Design & Development in the UK — Free Quote",
   description:
-    "UK website design & development agency. Fast, SEO-ready websites that turn visitors into leads and booked calls. Fixed-price quotes, no templates, reply within one business day. Get your free quote.",
+    "UK website design & development agency. From fully custom website development to Wix, WordPress and Webflow builds — fast, SEO-ready websites that turn visitors into leads and booked calls. Fixed-price quotes, reply within one business day. Get your free quote.",
   alternates: { canonical: PATH },
   openGraph: {
     title: "UK Website Design & Development — Devibi",
@@ -47,8 +48,8 @@ function GoogleMark() {
 }
 
 const TRUST_POINTS = [
-  "Custom design — never a template",
-  "Built fast on Next.js, Webflow or WordPress",
+  "Custom website development — built around your brand",
+  "Custom code, WordPress, Webflow or Wix — your choice",
   "Fixed-price quote before any work starts",
   "SEO-ready so Google can rank you from day one",
   "You own all the code, content and files",
@@ -97,7 +98,15 @@ const FAQS = [
   },
   {
     q: "Which platform will you build my website on?",
-    a: "Whichever fits your team. We recommend Next.js for top performance and custom functionality, Webflow when you want full visual control without a developer, and WordPress when that's what your team already runs. We'll tell you honestly which suits you in the first call.",
+    a: "Whichever fits your team. We do fully custom website development on Next.js for top performance and unique functionality, Webflow when you want visual control without a developer, and WordPress or Wix when that's the platform your team prefers to edit. We'll tell you honestly which suits you in the first call.",
+  },
+  {
+    q: "Do you offer custom website development?",
+    a: "Yes — it's our core service. We build fully custom websites and web apps coded from scratch on modern frameworks like Next.js, for when you need top speed, bespoke features or a design that's genuinely yours rather than an off-the-shelf theme.",
+  },
+  {
+    q: "Do you build and develop Wix websites?",
+    a: "Yes. If you want a website your team can manage in Wix, we'll design and develop it properly — fast, on-brand and set up for Google. We'll also be upfront about where a custom build would serve you better, so you can choose with eyes open.",
   },
   {
     q: "Will my website be good for SEO and Google?",
@@ -156,15 +165,16 @@ export default function UKWebsiteDevelopmentPage() {
         <div className="container lp-hero__grid">
           <div className="lp-hero__copy">
             <p className="lp-eyebrow" data-reveal>
-              <span className="pulse-dot" /> UK Website Design &amp; Development Agency
+              <span className="pulse-dot" /> UK Custom Website Design &amp; Development Agency
             </p>
             <h1 className="lp-hero__title" data-split>
               Websites that turn UK clicks into <span className="hl">customers</span>
             </h1>
             <p className="lp-hero__sub" data-reveal>
-              Devibi designs and builds fast, SEO-ready websites for UK businesses — made to
+              Devibi designs and builds fast, SEO-ready websites for UK businesses — from
+              fully custom website development to Wix, WordPress and Webflow builds. Made to
               load in under a second, rank on Google and turn visitors into enquiries, calls
-              and sales. Fixed-price quotes, no templates, reply within one business day.
+              and sales. Fixed-price quotes, reply within one business day.
             </p>
 
             <ul className="lp-checklist" data-reveal>
@@ -178,10 +188,7 @@ export default function UKWebsiteDevelopmentPage() {
                 <span className="btn__fill" />
                 <span className="btn__label">Get my free quote</span>
               </a>
-              <a href="tel:+44" className="btn btn--ghost lp-hide-sm" data-magnetic>
-                <span className="btn__fill" />
-                <span className="btn__label">Book a free consultation</span>
-              </a>
+              <ConsultButton />
             </div>
 
             <p className="lp-rating" data-reveal>
